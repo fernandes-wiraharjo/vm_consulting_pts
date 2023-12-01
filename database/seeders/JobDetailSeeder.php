@@ -130,7 +130,7 @@ class JobDetailSeeder extends Seeder
         if (is_null($job_detail_has_exist)) {
             foreach ($job_details as $job_detail) {
                 $job_detail['id_job'] = DB::table('jobs')->where('code', $job_detail['job_code'])->first()->id;
-                $job_detail['id_user'] = DB::table('users')->where('user_name', $job_detail['user_name'])->first()->id;
+                $job_detail['id_user'] = DB::table('users')->where('name', $job_detail['user_name'])->first()->id;
                 unset($job_detail['job_code'], $job_detail['user_name']);
                 DB::table('job_details')->insert($job_detail);
             }

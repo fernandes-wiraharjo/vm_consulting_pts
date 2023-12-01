@@ -26,19 +26,19 @@
         <a class="rounded-circle" href="dashboard-analytics.html#!" role="button" id="dropdownUser"
           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <div class="avatar avatar-md">
-            <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-2.jpg') }}" class="rounded-circle">
+            <img alt="avatar" src="{{ asset('assets/images/avatar/user.jpg') }}" class="rounded-circle">
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
           <div class="px-4 pb-0 pt-2">
             <div class="lh-1 ">
-              <h5 class="mb-1">Admin</h5>
+              <h5 class="mb-1">{{ auth()->user()->name }}</h5>
             </div>
             <div class=" dropdown-divider mt-3 mb-2"></div>
           </div>
           <ul class="list-unstyled">
             <li>
-              <a class="dropdown-item" href="{{ route('login') }}">
+              <a class="dropdown-item" href="{{ route('do-logout') }}">
                 <i class="me-2 icon-xxs dropdown-item-icon" data-feather="power"></i>Sign Out
               </a>
             </li>
