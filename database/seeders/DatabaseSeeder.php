@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ClientSeeder::class,
             UserRateSeeder::class,
-            JobSeeder::class
+            JobSeeder::class,
+            JobDetailSeeder::class
         ]);
     }
 }
