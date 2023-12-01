@@ -16,6 +16,13 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [AuthController::class, 'login'])->name('login');
+Route::middleware('guest')->group(function() {
+  Route::get('/', [AuthController::class, 'login'])->name('login');
+  Route::post('/login', [AuthController::class, 'doLogin'])->name('do-login');
+});
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function() {
+  Route::get('/logout', [AuthController::class, 'doLogout'])->name('do-logout');
+
+  Route::get('/home', [HomeController::class, 'index'])->name('home');
+});

@@ -18,29 +18,37 @@
   <main class="container d-flex flex-column">
     <div class="row align-items-center justify-content-center g-0 min-vh-100">
       <div class="col-12 col-md-8 col-lg-6 col-xxl-4 py-8 py-xl-0">
-        <a href="sign-in.html#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle d-none ">
-          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-        </a>
+        @if (session('failed'))
+        <div class="alert alert-danger" role="alert">
+          {{ session('failed') }}
+        </div>
+        @endif
         <!-- Card -->
         <div class="card smooth-shadow-md">
           <!-- Card body -->
           <div class="card-body p-6">
             <div class="mb-4">
               <a href="#"><h3 class="m-0">VM Consulting</h3></a>
-              <p class="mb-6">Please enter your user information.</p>
+              <p class="mb-6">Please enter your user information</p>
             </div>
             <!-- Form -->
-            <form action="{{ route('home') }}" method="GET">
+            <form action="{{ route('do-login') }}" method="POST">
+              @csrf
               <!-- Email -->
               <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" class="form-control" name="email" placeholder="Email address here" required>
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" class="form-control @if ($errors->has('username')) is-invalid @endif" name="username" value="{{ old('username') }}">
+                @if($errors->has('username'))
+                  <div class="invalid-feedback">{{ $errors->first('username') }}</div>
+                @endif
               </div>
               <!-- Password -->
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" class="form-control" name="password" placeholder="**************" required>
+                <input type="password" id="password" class="form-control @if ($errors->has('password')) is-invalid @endif" name="password">
+                @if($errors->has('password'))
+                  <div class="invalid-feedback">{{ $errors->first('password') }}</div>
+                @endif
               </div>
 
               <!-- Button -->
