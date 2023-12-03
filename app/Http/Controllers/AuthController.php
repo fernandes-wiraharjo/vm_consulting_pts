@@ -25,10 +25,10 @@ class AuthController extends Controller
         );
 
         if (Auth::attempt($credentials)) {
-            return redirect('/home')->with('success', 'Login berhasil');
+            return redirect('/home')->with('success', 'Login successfully');
         }
 
-        return redirect()->back()->with('failed', 'Email atau password salah, silakan coba lagi');
+        return redirect()->back()->with('failed', 'Invalid Username or Password');
     }
 
     public function doLogout()

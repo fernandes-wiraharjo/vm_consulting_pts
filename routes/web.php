@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,13 @@ Route::middleware('auth')->group(function() {
   Route::get('/logout', [AuthController::class, 'doLogout'])->name('do-logout');
 
   Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+  Route::prefix('role')->group(function() {
+    Route::get('/', [RoleController::class, 'index'])->name('role::index');
+    Route::get('/create', [RoleController::class, 'create'])->name('role::create');
+    Route::post('/create', [RoleController::class, 'store'])->name('role::store');
+    Route::get('/edit/{roleId}', [RoleController::class, 'edit'])->name('role::edit');
+    Route::post('/update/{roleId}', [RoleController::class, 'update'])->name('role::update');
+    Route::get('/delete/{roleId}', [RoleController::class, 'delete'])->name('role::delete');
+  });
 });
