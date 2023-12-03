@@ -12,17 +12,13 @@
         </i> Home
       </a>
     </li>
+    @if (auth()->user()->role()->code === 'ADM')
     <li class="nav-item">
-      <a href="#" class="nav-link has-arrow">
-        <i data-feather="menu" class="nav-icon me-2 icon-xxs">
-        </i> Menu
+      <a href="{{ route('role::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['role::index', 'role::create', 'role::edit']) ? 'active' : '' }}">
+        <i data-feather="settings" class="nav-icon me-2 icon-xxs">
+        </i> Roles
       </a>
     </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link has-arrow">
-        <i data-feather="menu" class="nav-icon me-2 icon-xxs">
-        </i> Menu
-      </a>
-    </li>
+    @endif
   </ul>
 </div>

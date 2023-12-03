@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="{{ asset('assets/libs/bootstrap-icons/font/bootstrap-icons.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/libs/@mdi/font/css/materialdesignicons.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/libs/simplebar/dist/simplebar.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/libs/datatables.net-bs5/css/responsive.bootstrap5.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/libs/izitoast/css/iziToast.min.css') }}">
   <!-- Theme CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
@@ -44,14 +46,12 @@
   <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('assets/libs/feather-icons/dist/feather.min.js') }}"></script>
   <script src="{{ asset('assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
   <script src="{{ asset('assets/libs/izitoast/js/iziToast.min.js') }}"></script>
   <!-- Theme JS -->
   <script src="{{ asset('assets/js/theme.min.js') }}"></script>
-  <!-- jsvectormap -->
-  <script src="{{ asset('assets/libs/jsvectormap/dist/js/jsvectormap.min.js') }}"></script>
-  <script src="{{ asset('assets/libs/jsvectormap/dist/maps/world.js') }}"></script>
-  <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-  <script src="{{ asset('assets/js/vendors/chart.js') }}"></script>
   <!-- izi toast -->
   <script>
     const messageNotifSuccess = $('body #main-wrapper').data("notif-success");
@@ -59,7 +59,7 @@
 
     if (messageNotifSuccess != "") {
       iziToast.success({
-        title: 'Berhasil',
+        title: 'Success',
         message: messageNotifSuccess,
         position: 'topRight',
       });
@@ -67,7 +67,7 @@
 
     if (messageNotifFailed != "") {
       iziToast.error({
-        title: 'Gagal',
+        title: 'Failed',
         message: messageNotifFailed,
         position: 'topRight',
       });
