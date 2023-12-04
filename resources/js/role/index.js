@@ -17,6 +17,12 @@ $(document).ready(function () {
         name: "name"
       },
       {
+        data: "is_active",
+        name: "is_active",
+        orderable: false,
+        searchable: false
+      },
+      {
         data: "action",
         name: "action",
         orderable: false,
@@ -27,10 +33,19 @@ $(document).ready(function () {
 
   $("#table-role").on("click", ".btn-delete", function() {
     const name = $(this).data("name");
+    const isActive = $(this).data("is-active");
+    const btnColor = $(this).data("btn-color");
     const url = $(this).data("url");
 
+    let status = 'activate';
+    if (isActive) {
+      status = 'deactive';
+    }
+
     $("#name").text(name);
+    $("#status").text(status);
     $("#delete").attr("href", url);
-    $("#modal-confirmation-delete").modal("show");
+    $("#delete").addClass(btnColor);
+    $("#modal-toggle-activate").modal("show");
   });
 });

@@ -18,16 +18,34 @@ class RoleController extends Controller
 
         if ($request->ajax()) {
             return DataTables::of($roles)
+                ->editColumn('is_active', function($role) {
+                    if ($role->is_active) {
+                        return '<span class="badge bg-success">Active</span>';
+                    } else {
+                        return '<span class="badge bg-danger">Not Active</span>';
+                    }
+                })
                 ->addColumn('action', function($role) {
                     $urlEdit = route('role::edit', ['roleId' => $role->id]);
-                    $urlDelete = route('role::delete', ['roleId' => $role->id]);
+                    $urlToggleActivate = route('role::toggleActivate', ['roleId' => $role->id]);
 
-                    $edit = '<a href="'.$urlEdit.'" type="button" class="btn btn-sm btn-secondary mb-2">Edit</a>
-                            <button type="button" class="btn btn-sm btn-danger mb-2 btn-delete" data-name="'.$role->name.'" data-url="'.$urlDelete.'">Delete</button>';
+                    $textToggleActivate = 'Activate';
+                    $btnToggleActivate = 'btn-success';
+                    if ($role->is_active) {
+                        $textToggleActivate = 'Deactive';
+                        $btnToggleActivate = 'btn-danger';
+                    }
+
+                    $edit = '<a href="'.$urlEdit.'" type="button" class="btn btn-sm btn-info mb-2">Edit</a>
+                            <button type="button" class="btn btn-sm '.$btnToggleActivate.' mb-2 btn-delete" 
+                                data-name="'.$role->name.'" data-is-active="'.$role->is_active.'" 
+                                data-url="'.$urlToggleActivate.'" data-btn-color="'.$btnToggleActivate.'">
+                                '.$textToggleActivate.'
+                            </button>';
 
                     return $edit;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['is_active', 'action'])
                 ->make();
         }
 
@@ -90,12 +108,12 @@ class RoleController extends Controller
         }
     }
 
-    public function delete($roleId)
+    public function toggleActivate($roleId)
     {
         try {
-            $this->roleService->deleteRole($roleId);
+            $this->roleService->toggleActivateRole($roleId);
 
-            return redirect()->route('role::index')->with('success', 'Role successfully deleted');
+            return redirect()->route('role::index')->with('success', 'Role successfully updated');
         } catch (\Throwable $th) {
             return redirect()->back()->with('failed', 'An error occurred');
         }
