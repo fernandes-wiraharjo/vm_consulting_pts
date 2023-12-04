@@ -19,6 +19,7 @@ class CreateUserRates extends Migration
             $table->integer('id_user')->unsigned()->nullable()->unique();
             $table->foreign('id_user')->references('id')->on('users');
             $table->integer('default_rate_per_hour');
+            $table->boolean('is_active')->default(true);
             $table->index('created_by');
             $table->integer('created_by')->unsigned()->nullable();
             $table->foreign('created_by')->references('id')->on('users');

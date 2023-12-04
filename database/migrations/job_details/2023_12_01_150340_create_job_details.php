@@ -26,6 +26,7 @@ class CreateJobDetails extends Migration
             $table->time('hour')->nullable();
             $table->integer('rate_per_hour')->nullable();
             $table->integer('cost')->default(0);
+            $table->boolean('is_active')->default(true);
             $table->index('created_by');
             $table->integer('created_by')->unsigned()->nullable();
             $table->foreign('created_by')->references('id')->on('users');

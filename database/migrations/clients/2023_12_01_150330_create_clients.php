@@ -22,6 +22,7 @@ class CreateClients extends Migration
             $table->string('address', 250)->nullable();
             $table->string('phone', 50)->nullable();
             $table->string('pic', 50)->nullable();
+            $table->boolean('is_active')->default(true);
             $table->index('created_by');
             $table->integer('created_by')->unsigned()->nullable();
             $table->foreign('created_by')->references('id')->on('users');

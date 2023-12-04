@@ -17,6 +17,7 @@ class CreateRoles extends Migration
             $table->increments('id');
             $table->string('code', 10)->unique();
             $table->string('name', 50);
+            $table->boolean('is_active')->default(true);
             $table->index('created_by');
             $table->integer('created_by')->unsigned()->nullable();
             $table->timestamp('created_date', $precision = 0);
