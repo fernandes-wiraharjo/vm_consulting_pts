@@ -19,6 +19,12 @@
         </i> Roles
       </a>
     </li>
+    <li class="nav-item">
+      <a href="{{ route('user::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['user::index', 'user::create', 'user::edit']) ? 'active' : '' }}">
+        <i data-feather="users" class="nav-icon me-2 icon-xxs">
+        </i> Users
+      </a>
+    </li>
     @endif
   </ul>
 </div>
