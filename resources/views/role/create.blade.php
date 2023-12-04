@@ -39,7 +39,7 @@
             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
             <div class="col-sm-12 col-md-7">
               <button class="btn btn-primary me-2" type="submit">Submit</button>
-              <a href="{{ route('role::index') }}" class="btn btn-outline-danger">Cancel</a>
+              <a href="{{ route('role::index') }}" class="btn btn-outline-dark">Cancel</a>
             </div>
           </div>
         </form>

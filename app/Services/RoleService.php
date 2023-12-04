@@ -10,7 +10,7 @@ class RoleService
     public function getRoles()
     {
         return DB::table('roles')
-            ->select('id', 'code', 'name');
+            ->select('id', 'code', 'name', 'is_active');
     }
 
     public function storeRole($data)
@@ -28,7 +28,7 @@ class RoleService
     {
         return DB::table('roles')
             ->where('id', $roleId)
-            ->select('id', 'code', 'name')
+            ->select('id', 'code', 'name', 'is_active')
             ->first();
     }
 
@@ -44,10 +44,23 @@ class RoleService
             ]);
     }
 
-    public function deleteRole($roleId)
+    public function toggleActivateRole($roleId)
     {
+        $role = $this->showRole($roleId);
+
+        $dataUpdate = [
+            'updated_by' => auth()->user()->id,
+            'updated_date' => Carbon::now()
+        ];
+
+        if ($role->is_active) {
+            $dataUpdate['is_active'] = false;
+        } else {
+            $dataUpdate['is_active'] = true;
+        }
+
         return DB::table('roles')
             ->where('id', $roleId)
-            ->delete();
+            ->update($dataUpdate);
     }
 }

@@ -33,6 +33,6 @@ Route::middleware('auth')->group(function() {
     Route::post('/create', [RoleController::class, 'store'])->name('role::store');
     Route::get('/edit/{roleId}', [RoleController::class, 'edit'])->name('role::edit');
     Route::post('/update/{roleId}', [RoleController::class, 'update'])->name('role::update');
-    Route::get('/delete/{roleId}', [RoleController::class, 'delete'])->name('role::delete');
+    Route::get('/toggle-activate/{roleId}', [RoleController::class, 'toggleActivate'])->name('role::toggleActivate');
   });
 });

@@ -23,6 +23,7 @@
             <thead class="table-light">
               <th>Code</th>
               <th>Name</th>
+              <th>Status</th>
               <th>Action</th>
             </thead>
             <tbody>
@@ -35,7 +36,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modal-confirmation-delete" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-toggle-activate" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -45,11 +46,11 @@
         </button>
       </div>
       <div class="modal-body">
-        Are you sure want to delete role <strong id="name"></strong>?
+        Are you sure want to <strong id="status"></strong> role <strong id="name"></strong>?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-        <a id="delete" class="btn btn-danger">Delete</a>
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
+        <a id="delete" class="btn">Yes</a>
       </div>
     </div>
   </div>
