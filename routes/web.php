@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,5 +45,15 @@ Route::middleware('auth')->group(function() {
     Route::get('/edit/{userId}', [UserController::class, 'edit'])->name('user::edit');
     Route::post('/update/{userId}', [UserController::class, 'update'])->name('user::update');
     Route::get('/toggle-activate/{userId}', [UserController::class, 'toggleActivate'])->name('user::toggleActivate');
+  });
+
+  Route::prefix('client')->group(function() {
+    Route::get('/', [ClientController::class, 'index'])->name('client::index');
+    Route::get('/{clientId}', [ClientController::class, 'detail'])->name('client::detail');
+    Route::get('/create', [ClientController::class, 'create'])->name('client::create');
+    Route::post('/store', [ClientController::class, 'store'])->name('client::store');
+    Route::get('/edit/{clientId}', [ClientController::class, 'edit'])->name('client::edit');
+    Route::post('/update/{clientId}', [ClientController::class, 'update'])->name('client::update');
+    Route::get('/toggle-activate/{clientId}', [ClientController::class, 'toggleActivate'])->name('client::toggleActivate');
   });
 });

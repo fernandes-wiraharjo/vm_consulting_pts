@@ -9,6 +9,7 @@ export default defineConfig({
 
                 'resources/js/role/index.js',
                 'resources/js/user/index.js',
+                'resources/js/client/index.js',
             ],
             refresh: true,
         }),
