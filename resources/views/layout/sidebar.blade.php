@@ -25,6 +25,12 @@
         </i> Users
       </a>
     </li>
+    <li class="nav-item">
+      <a href="{{ route('client::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['client::index', 'client::create', 'client::edit', 'client::detail']) ? 'active' : '' }}">
+        <i data-feather="briefcase" class="nav-icon me-2 icon-xxs">
+        </i> Clients
+      </a>
+    </li>
     @endif
   </ul>
 </div>
