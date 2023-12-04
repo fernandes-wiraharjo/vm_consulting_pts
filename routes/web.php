@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,18 @@ Route::middleware('auth')->group(function() {
   Route::prefix('role')->group(function() {
     Route::get('/', [RoleController::class, 'index'])->name('role::index');
     Route::get('/create', [RoleController::class, 'create'])->name('role::create');
-    Route::post('/create', [RoleController::class, 'store'])->name('role::store');
+    Route::post('/store', [RoleController::class, 'store'])->name('role::store');
     Route::get('/edit/{roleId}', [RoleController::class, 'edit'])->name('role::edit');
     Route::post('/update/{roleId}', [RoleController::class, 'update'])->name('role::update');
     Route::get('/toggle-activate/{roleId}', [RoleController::class, 'toggleActivate'])->name('role::toggleActivate');
+  });
+
+  Route::prefix('user')->group(function() {
+    Route::get('/', [UserController::class, 'index'])->name('user::index');
+    Route::get('/create', [UserController::class, 'create'])->name('user::create');
+    Route::post('/store', [UserController::class, 'store'])->name('user::store');
+    Route::get('/edit/{userId}', [UserController::class, 'edit'])->name('user::edit');
+    Route::post('/update/{userId}', [UserController::class, 'update'])->name('user::update');
+    Route::get('/toggle-activate/{userId}', [UserController::class, 'toggleActivate'])->name('user::toggleActivate');
   });
 });
