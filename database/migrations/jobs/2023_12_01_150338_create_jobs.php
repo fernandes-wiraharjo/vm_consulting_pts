@@ -23,6 +23,7 @@ class CreateJobs extends Migration
             $table->string('status', 20);
             $table->time('total_hours');
             $table->integer('total_costs');
+            $table->boolean('is_active')->default(true);
             $table->index('created_by');
             $table->integer('created_by')->unsigned()->nullable();
             $table->foreign('created_by')->references('id')->on('users');

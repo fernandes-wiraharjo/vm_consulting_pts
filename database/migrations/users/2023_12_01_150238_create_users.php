@@ -21,6 +21,7 @@ class CreateUsers extends Migration
             $table->string('name', 50);
             $table->string('user_name', 50)->unique();
             $table->string('password', 250);
+            $table->boolean('is_active')->default(true);
             $table->index('created_by');
             $table->integer('created_by')->unsigned()->nullable();
             $table->foreign('created_by')->references('id')->on('users');
