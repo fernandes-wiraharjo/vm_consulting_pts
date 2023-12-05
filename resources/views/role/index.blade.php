@@ -1,13 +1,13 @@
 @extends('layout.master')
 
-@section('title', 'Roles')
+@section('title', 'Role')
 
 @section('content')
 <div class="row">
   <div class="col-lg-12 col-md-12 col-12">
     <!-- Page header -->
     <div class="d-flex justify-content-between align-items-center mb-5">
-      <h3 class="mb-0 ">Roles</h3>
+      <h3 class="mb-0 ">Role</h3>
     </div>
   </div>
 </div>

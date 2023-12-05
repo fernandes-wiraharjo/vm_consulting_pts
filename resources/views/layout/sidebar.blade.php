@@ -16,19 +16,19 @@
     <li class="nav-item">
       <a href="{{ route('role::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['role::index', 'role::create', 'role::edit']) ? 'active' : '' }}">
         <i data-feather="settings" class="nav-icon me-2 icon-xxs">
-        </i> Roles
+        </i> Role
       </a>
     </li>
     <li class="nav-item">
       <a href="{{ route('user::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['user::index', 'user::create', 'user::edit']) ? 'active' : '' }}">
         <i data-feather="users" class="nav-icon me-2 icon-xxs">
-        </i> Users
+        </i> User
       </a>
     </li>
     <li class="nav-item">
       <a href="{{ route('client::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['client::index', 'client::create', 'client::edit', 'client::detail']) ? 'active' : '' }}">
         <i data-feather="briefcase" class="nav-icon me-2 icon-xxs">
-        </i> Clients
+        </i> Client
       </a>
     </li>
     @endif
