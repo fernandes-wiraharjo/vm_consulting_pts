@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function() {
 
   Route::prefix('client')->group(function() {
     Route::get('/', [ClientController::class, 'index'])->name('client::index');
-    Route::get('/{clientId}', [ClientController::class, 'detail'])->name('client::detail');
+    Route::get('/detail/{clientId}', [ClientController::class, 'detail'])->name('client::detail');
     Route::get('/create', [ClientController::class, 'create'])->name('client::create');
     Route::post('/store', [ClientController::class, 'store'])->name('client::store');
     Route::get('/edit/{clientId}', [ClientController::class, 'edit'])->name('client::edit');
