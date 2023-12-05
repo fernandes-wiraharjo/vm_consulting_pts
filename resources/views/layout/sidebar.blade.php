@@ -26,6 +26,12 @@
       </a>
     </li>
     <li class="nav-item">
+      <a href="{{ route('user-rate::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['user-rate::index', 'user-rate::create', 'user-rate::edit']) ? 'active' : '' }}">
+        <i data-feather="credit-card" class="nav-icon me-2 icon-xxs">
+        </i> User Rate
+      </a>
+    </li>
+    <li class="nav-item">
       <a href="{{ route('client::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['client::index', 'client::create', 'client::edit', 'client::detail']) ? 'active' : '' }}">
         <i data-feather="briefcase" class="nav-icon me-2 icon-xxs">
         </i> Client

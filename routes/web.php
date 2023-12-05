@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserRateController;
 use App\Http\Controllers\ClientController;
 
 /*
@@ -45,6 +46,15 @@ Route::middleware('auth')->group(function() {
     Route::get('/edit/{userId}', [UserController::class, 'edit'])->name('user::edit');
     Route::post('/update/{userId}', [UserController::class, 'update'])->name('user::update');
     Route::get('/toggle-activate/{userId}', [UserController::class, 'toggleActivate'])->name('user::toggleActivate');
+  });
+
+  Route::prefix('user-rate')->group(function() {
+    Route::get('/', [UserRateController::class, 'index'])->name('user-rate::index');
+    Route::get('/create', [UserRateController::class, 'create'])->name('user-rate::create');
+    Route::post('/store', [UserRateController::class, 'store'])->name('user-rate::store');
+    Route::get('/edit/{userRateId}', [UserRateController::class, 'edit'])->name('user-rate::edit');
+    Route::post('/update/{userRateId}', [UserRateController::class, 'update'])->name('user-rate::update');
+    Route::get('/toggle-activate/{userRateId}', [UserRateController::class, 'toggleActivate'])->name('user-rate::toggleActivate');
   });
 
   Route::prefix('client')->group(function() {
