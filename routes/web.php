@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRateController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProjectTrackingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,5 +66,18 @@ Route::middleware('auth')->group(function() {
     Route::get('/edit/{clientId}', [ClientController::class, 'edit'])->name('client::edit');
     Route::post('/update/{clientId}', [ClientController::class, 'update'])->name('client::update');
     Route::get('/toggle-activate/{clientId}', [ClientController::class, 'toggleActivate'])->name('client::toggleActivate');
+  });
+
+  Route::prefix('project-tracking')->group(function() {
+    Route::get('/', [ProjectTrackingController::class, 'index'])->name('project-tracking::index');
+    Route::get('/create', [ProjectTrackingController::class, 'create'])->name('project-tracking::create');
+    Route::post('/store', [ProjectTrackingController::class, 'store'])->name('project-tracking::store');
+    Route::get('/edit/{jobId}', [ProjectTrackingController::class, 'edit'])->name('project-tracking::edit');
+    Route::post('/update/{jobId}', [ProjectTrackingController::class, 'update'])->name('project-tracking::update');
+    Route::get('/detail-job/{jobId}', [ProjectTrackingController::class, 'detailPerJob'])->name('project-tracking::detailPerJob');
+    Route::get('/detail-user/{jobId}/{userId}', [ProjectTrackingController::class, 'detailPerUser'])->name('project-tracking::detailPerUser');
+    Route::get('/detail-user/edit/{jobId}/{userId}/{jobDetailId}', [ProjectTrackingController::class, 'editDetailPerUser'])->name('project-tracking::editDetailPerUser');
+    Route::post('/detail-user/update/{jobId}/{userId}/{jobDetailId}', [ProjectTrackingController::class, 'updateDetailPerUser'])->name('project-tracking::updateDetailPerUser');
+    Route::get('/toggle-activate/{jobId}', [ProjectTrackingController::class, 'toggleActivate'])->name('project-tracking::toggleActivate');
   });
 });

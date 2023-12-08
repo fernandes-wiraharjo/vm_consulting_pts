@@ -20,9 +20,9 @@ class CreateJobs extends Migration
             $table->foreign('id_client')->references('id')->on('clients');
             $table->string('code', 50)->unique();
             $table->string('description', 250)->nullable();
-            $table->string('status', 20);
-            $table->time('total_hours');
-            $table->integer('total_costs');
+            $table->string('status', 20)->default('open');
+            $table->time('total_hours')->default(0);
+            $table->integer('total_costs')->default(0);
             $table->boolean('is_active')->default(true);
             $table->index('created_by');
             $table->integer('created_by')->unsigned()->nullable();

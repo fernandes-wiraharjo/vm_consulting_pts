@@ -37,6 +37,12 @@
         </i> Client
       </a>
     </li>
+    <li class="nav-item">
+      <a href="{{ route('project-tracking::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['project-tracking::index', 'project-tracking::create', 'project-tracking::edit', 'project-tracking::detailPerJob', 'project-tracking::detailPerUser', 'project-tracking::editDetailPerUser']) ? 'active' : '' }}">
+        <i data-feather="file-text" class="nav-icon me-2 icon-xxs">
+        </i> Project Tracking
+      </a>
+    </li>
     @endif
   </ul>
 </div>
