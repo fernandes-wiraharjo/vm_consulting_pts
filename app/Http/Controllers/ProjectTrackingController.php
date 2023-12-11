@@ -140,7 +140,7 @@ class ProjectTrackingController extends Controller
     public function detailPerJob(Request $request, $jobId)
     {
         $job = $this->projectTrackingService->showJob($jobId);
-        $jobDetail = $this->projectTrackingService->getJobDetails($jobId)->get();
+        $jobDetail = $this->projectTrackingService->getJobDetails($jobId)->where('job_details.is_active', true);
 
         if ($request->ajax()) {
             return DataTables::of($jobDetail)
@@ -167,7 +167,7 @@ class ProjectTrackingController extends Controller
     {
         $job = $this->projectTrackingService->showJob($jobId);
         $user = $this->userService->showUser($userId);
-        $jobDetailPerUser = $this->projectTrackingService->getJobDetailsPerUser($jobId, $userId);
+        $jobDetailPerUser = $this->projectTrackingService->getJobDetailsPerUser($jobId, $userId)->where('job_details.is_active', true);
 
         if ($request->ajax()) {
             return DataTables::of($jobDetailPerUser)

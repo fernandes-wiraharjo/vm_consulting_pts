@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRateController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProjectTrackingController;
+use App\Http\Controllers\DailyTaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,5 +80,15 @@ Route::middleware('auth')->group(function() {
     Route::get('/detail-user/edit/{jobId}/{userId}/{jobDetailId}', [ProjectTrackingController::class, 'editDetailPerUser'])->name('project-tracking::editDetailPerUser');
     Route::post('/detail-user/update/{jobId}/{userId}/{jobDetailId}', [ProjectTrackingController::class, 'updateDetailPerUser'])->name('project-tracking::updateDetailPerUser');
     Route::get('/toggle-activate/{jobId}', [ProjectTrackingController::class, 'toggleActivate'])->name('project-tracking::toggleActivate');
+  });
+
+  Route::prefix('daily-task')->group(function() {
+    Route::get('/', [DailyTaskController::class, 'index'])->name('daily-task::index');
+    Route::get('/create', [DailyTaskController::class, 'create'])->name('daily-task::create');
+    Route::post('/store', [DailyTaskController::class, 'store'])->name('daily-task::store');
+    Route::get('/detail/{date}', [DailyTaskController::class, 'detail'])->name('daily-task::detail');
+    Route::get('/edit/{jobDetailId}', [DailyTaskController::class, 'edit'])->name('daily-task::edit');
+    Route::post('/update/{jobDetailId}', [DailyTaskController::class, 'update'])->name('daily-task::update');
+    Route::get('/delete/{jobDetailId}', [DailyTaskController::class, 'delete'])->name('daily-task::delete');
   });
 });

@@ -34,7 +34,7 @@ class JobSeeder extends Seeder
                 'code' => 'MOCO_CITR23-02',
                 'status' => 'close',
                 'total_hours' => '05:00',
-                'total_costs' => 6500000,
+                'total_costs' => 6000000,
                 'created_by' => null,
                 'created_date' => $now,
                 'updated_by' => null,

@@ -36,6 +36,14 @@ class UserRateService
             ->first();
     }
 
+    public function showUserRateByUser($userId)
+    {
+        return DB::table('user_rates')
+            ->where('id_user', $userId)
+            ->select('id', 'id_user', 'default_rate_per_hour', 'is_active')
+            ->first();
+    }
+
     public function updateUserRate($userRateId, $data) {
         return DB::table('user_rates')
             ->where('id', $userRateId)

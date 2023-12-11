@@ -89,6 +89,7 @@ class ProjectTrackingService
                 ]);
 
             $totalCost = DB::table('job_details')
+								->where('is_active', true)
                 ->where('id_job', $jobId)
                 ->sum('cost');
 
