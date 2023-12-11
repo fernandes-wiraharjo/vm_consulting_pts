@@ -44,5 +44,11 @@
       </a>
     </li>
     @endif
+    <li class="nav-item">
+      <a href="{{ route('daily-task::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['daily-task::index', 'daily-task::detail', 'daily-task::create', 'daily-task::edit']) ? 'active' : '' }}">
+        <i data-feather="check-square" class="nav-icon me-2 icon-xxs">
+        </i> Daily Task
+      </a>
+    </li>
   </ul>
 </div>
