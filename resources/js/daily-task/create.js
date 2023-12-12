@@ -10,7 +10,7 @@ $(document).ready(function () {
     dateFormat: "Y-m-d",
     altInput: true,
     altFormat: "l, d F Y",
-    maxDate: flatpickr.formatDate(new Date(), "Y-m-d"),
+    maxDate: "today",
     clickOpens: !hasDate
   });
 

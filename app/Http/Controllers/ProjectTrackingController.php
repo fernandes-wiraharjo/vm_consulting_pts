@@ -169,10 +169,14 @@ class ProjectTrackingController extends Controller
         $user = $this->userService->showUser($userId);
         $jobDetailPerUser = $this->projectTrackingService->getJobDetailsPerUser($jobId, $userId)->where('job_details.is_active', true);
 
+        if ($request->startDate && $request->endDate) {
+            $jobDetailPerUser->where('date', '>=', "$request->startDate")->where('date', '<=', "$request->endDate");
+        }
+
         if ($request->ajax()) {
             return DataTables::of($jobDetailPerUser)
                 ->editColumn('date', function($jobDetailPerUser) {
-                    return date('d F Y', strtotime($jobDetailPerUser->date));
+                    return date('l, d F Y', strtotime($jobDetailPerUser->date));
                 })
                 ->editColumn('rate_per_hour', function($jobDetailPerUser) {
                     return formatCurrency($jobDetailPerUser->rate_per_hour);
