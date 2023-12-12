@@ -2,6 +2,10 @@
 
 @section('title', 'Project Tracking')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('assets/libs/flatpickr/flatpickr.min.css') }}">
+@endsection
+
 @section('content')
 <div class="row">
   <div class="col-lg-12 col-md-12 col-12">
@@ -26,6 +30,16 @@
           </ol>
         </div>
       </div>
+      <div class="card-header border-top border-2 border-bottom-0">
+        <div class="row">
+          <div class="col-10 col-sm-8 col-lg-5">
+            <input type="text" class="form-control" id="filter-date" placeholder="Filter Date">
+          </div>
+          <div class="col-2 col-sm-4">
+            <button class="btn btn-outline-dark border-1" id="btn-reset-filter">Reset</button>
+          </div>
+        </div>
+      </div>
       <div class="card-body">
         <div class="table-responsive table-card">
           <table id="table-job-detail-user" class="table text-nowrap table-centered mt-0 w-100">
@@ -48,5 +62,6 @@
 @endsection
 
 @section('js')
+<script src="{{ asset('assets/libs/flatpickr/flatpickr.js') }}"></script>
 @vite('resources/js/project-tracking/detail/user.js')
 @endsection
