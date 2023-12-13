@@ -14,11 +14,13 @@ $(document).ready(function () {
       },
       {
         data: "total_hour",
-        name: "total_hour"
+        name: "total_hour",
+        searchable: false
       },
       {
         data: "total_cost",
-        name: "total_cost"
+        name: "total_cost",
+        searchable: false
       },
       {
         data: "action",
