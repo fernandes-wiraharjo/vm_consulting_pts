@@ -9,6 +9,10 @@ $(document).ready(function () {
     },
     columns: [
       {
+        data: "created_date",
+        name: "created_date"
+      },
+      {
         data: "code",
         name: "code"
       },
@@ -45,6 +49,7 @@ $(document).ready(function () {
         searchable: false
       }
     ],
+    order: [[0, 'desc']],
   });
 
   $("#table-project-tracking").on("click", ".btn-delete", function() {

@@ -21,6 +21,7 @@
         <div class="table-responsive table-card">
           <table id="table-project-tracking" class="table text-nowrap table-centered mt-0 w-100">
             <thead class="table-light">
+              <th>Created Date</th>
               <th>Job Number</th>
               <th>Description</th>
               <th>Client</th>

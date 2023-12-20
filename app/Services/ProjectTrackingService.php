@@ -12,7 +12,7 @@ class ProjectTrackingService
 		return DB::table('jobs')
 			->join('clients', 'clients.id', 'jobs.id_client')
 			->select(
-				'jobs.id', 'jobs.code', 'jobs.description', 'jobs.status', 'jobs.total_hours', 'jobs.total_costs', 'jobs.is_active',
+				'jobs.id', 'jobs.code', 'jobs.description', 'jobs.status', 'jobs.total_hours', 'jobs.total_costs', 'jobs.is_active', 'jobs.created_date',
 				'clients.name as client_name'
 			);
 	}
