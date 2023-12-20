@@ -23,6 +23,10 @@ class DailyTaskController extends Controller
                 ->editColumn('date', function($dailyTask) {
                     return date('D, d M Y', strtotime($dailyTask->date));
                 })
+                ->filterColumn('date', function($query, $keyword) {
+                    $sql = "DATE_FORMAT(date, '%a, %d %b %Y') LIKE ?";
+                    $query->whereRaw($sql, ["%{$keyword}%"]);
+                })
                 ->addColumn('action', function($dailyTask) {
                     $urlDetail = route('daily-task::detail', ['date' => $dailyTask->date]);
 

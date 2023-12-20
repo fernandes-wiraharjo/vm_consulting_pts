@@ -2,7 +2,7 @@ $(document).ready(function () {
   $('#table-daily-task').DataTable({
     responsive: true,
     processing: true,
-    serverSide: false,
+    serverSide: true,
     stateServe: true,
     ajax: {
       url: "/daily-task"
@@ -14,7 +14,8 @@ $(document).ready(function () {
       },
       {
         data: "total_hour",
-        name: "total_hour"
+        name: "total_hour",
+        searchable: false
       },
       {
         data: "action",
@@ -23,5 +24,6 @@ $(document).ready(function () {
         searchable: false
       }
     ],
+    order: [[0, 'desc']]
   });
 });
