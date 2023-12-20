@@ -176,7 +176,7 @@ class ProjectTrackingController extends Controller
         if ($request->ajax()) {
             return DataTables::of($jobDetailPerUser)
                 ->editColumn('date', function($jobDetailPerUser) {
-                    return date('l, d F Y', strtotime($jobDetailPerUser->date));
+                    return date('D, d M Y', strtotime($jobDetailPerUser->date));
                 })
                 ->editColumn('rate_per_hour', function($jobDetailPerUser) {
                     return formatCurrency($jobDetailPerUser->rate_per_hour);

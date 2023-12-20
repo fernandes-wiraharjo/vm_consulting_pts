@@ -7,7 +7,7 @@
   <div class="col-lg-12 col-md-12 col-12">
     <!-- Page header -->
     <div class="mb-5">
-      <h3 class="mb-0 ">Daily Task - {{ date('l, d F Y', strtotime($date)) }}</h3>
+      <h3 class="mb-0 ">Daily Task - {{ date('D, d M Y', strtotime($date)) }}</h3>
       <h4>Total Hour - {{ $total_hour }}</h4>
     </div>
   </div>
@@ -22,7 +22,7 @@
         <div class="mt-3 mt-md-0 d-flex align-items-center">
           <ol class="breadcrumb m-0">
             <li class="breadcrumb-item"><a href="{{ route('daily-task::index') }}">Daily Task</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ date('l, d F Y', strtotime($date)) }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ date('D, d M Y', strtotime($date)) }}</li>
           </ol>
         </div>
       </div>

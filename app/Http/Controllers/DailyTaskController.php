@@ -21,7 +21,7 @@ class DailyTaskController extends Controller
         if ($request->ajax()) {
             return DataTables::of($dailyTasks)
                 ->editColumn('date', function($dailyTask) {
-                    return date('l, d F Y', strtotime($dailyTask->date));
+                    return date('D, d M Y', strtotime($dailyTask->date));
                 })
                 ->addColumn('action', function($dailyTask) {
                     $urlDetail = route('daily-task::detail', ['date' => $dailyTask->date]);
