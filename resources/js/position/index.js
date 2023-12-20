@@ -1,20 +1,20 @@
 $(document).ready(function () {
-  $('#table-user-rate').DataTable({
+  $('#table-position').DataTable({
     responsive: true,
     processing: true,
     serverSide: true,
     stateServe: true,
     ajax: {
-      url: "/user-rate"
+      url: "/position"
     },
     columns: [
       {
-        data: "name",
-        name: "users.name"
+        data: "code",
+        name: "code"
       },
       {
-        data: "default_rate_per_hour",
-        name: "default_rate_per_hour"
+        data: "name",
+        name: "name"
       },
       {
         data: "is_active",
@@ -31,7 +31,7 @@ $(document).ready(function () {
     ],
   });
 
-  $("#table-user-rate").on("click", ".btn-delete", function() {
+  $("#table-position").on("click", ".btn-delete", function() {
     const name = $(this).data("name");
     const isActive = $(this).data("is-active");
     const btnColor = $(this).data("btn-color");
@@ -47,12 +47,5 @@ $(document).ready(function () {
     $("#delete").attr("href", url);
     $("#delete").addClass(btnColor);
     $("#modal-toggle-activate").modal("show");
-  });
-
-  new AutoNumeric('.autonumeric', {
-    allowDecimalPadding: false,
-    decimalCharacter: ',',
-    digitGroupSeparator: '.',
-    unformatOnSubmit: true
   });
 });

@@ -33,7 +33,7 @@
           <div class="form-group row mb-4">
             <label class="col-form-label text-md-end col-12 col-md-3 col-lg-3">Date</label>
             <div class="col-sm-12 col-md-7">
-              <input type="text" class="form-control" value="{{ date('d F Y', strtotime($job_detail->date)) }}" disabled readonly>
+              <input type="text" class="form-control" value="{{ date('d M Y', strtotime($job_detail->date)) }}" disabled readonly>
             </div>
           </div>
           <div class="form-group row mb-4">

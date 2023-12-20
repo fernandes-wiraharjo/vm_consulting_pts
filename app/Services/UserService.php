@@ -11,10 +11,12 @@ class UserService
     public function getUsers()
     {
         return DB::table('users')
-            ->join('roles', 'roles.id', 'users.id_role')
+            ->leftJoin('roles', 'roles.id', 'users.id_role')
+            ->leftJoin('positions', 'positions.id', 'users.id_position')
             ->select(
-                'users.id', 'users.name', 'users.user_name', 'users.is_active',
-                'roles.name AS role_name'
+                'users.id', 'users.name', 'users.user_name', 'users.default_rate_per_hour', 'users.is_active',
+                'roles.name AS role_name',
+                'positions.name AS position_name'
             );
     }
 
@@ -23,7 +25,9 @@ class UserService
         return DB::table('users')
             ->insert([
                 'id_role' => $data['id_role'],
+                'id_position' => $data['id_position'],
                 'name' => $data['name'],
+                'default_rate_per_hour' => $data['default_rate_per_hour'],
                 'user_name' => $data['user_name'],
                 'password' => Hash::make($data['password']),
                 'created_by' => auth()->user()->id,
@@ -35,14 +39,16 @@ class UserService
     {
         return DB::table('users')
             ->where('id', $userId)
-            ->select('id', 'id_role', 'name', 'user_name', 'is_active')
+            ->select('id', 'id_role', 'id_position', 'name', 'user_name', 'default_rate_per_hour', 'is_active')
             ->first();
     }
 
     public function updateUser($userId, $data) {
         $dataUpdate = [
             'id_role' => $data['id_role'],
+            'id_position' => $data['id_position'],
             'name' => $data['name'],
+            'default_rate_per_hour' => $data['default_rate_per_hour'],
             'user_name' => $data['user_name'],
             'updated_by' => auth()->user()->id,
             'updated_date' => Carbon::now()

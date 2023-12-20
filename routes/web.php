@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserRateController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProjectTrackingController;
 use App\Http\Controllers\DailyTaskController;
@@ -41,6 +41,15 @@ Route::middleware('auth')->group(function() {
     Route::get('/toggle-activate/{roleId}', [RoleController::class, 'toggleActivate'])->name('role::toggleActivate');
   });
 
+  Route::prefix('position')->group(function() {
+    Route::get('/', [PositionController::class, 'index'])->name('position::index');
+    Route::get('/create', [PositionController::class, 'create'])->name('position::create');
+    Route::post('/store', [PositionController::class, 'store'])->name('position::store');
+    Route::get('/edit/{positionId}', [PositionController::class, 'edit'])->name('position::edit');
+    Route::post('/update/{positionId}', [PositionController::class, 'update'])->name('position::update');
+    Route::get('/toggle-activate/{positionId}', [PositionController::class, 'toggleActivate'])->name('position::toggleActivate');
+  });
+
   Route::prefix('user')->group(function() {
     Route::get('/', [UserController::class, 'index'])->name('user::index');
     Route::get('/create', [UserController::class, 'create'])->name('user::create');
@@ -48,15 +57,6 @@ Route::middleware('auth')->group(function() {
     Route::get('/edit/{userId}', [UserController::class, 'edit'])->name('user::edit');
     Route::post('/update/{userId}', [UserController::class, 'update'])->name('user::update');
     Route::get('/toggle-activate/{userId}', [UserController::class, 'toggleActivate'])->name('user::toggleActivate');
-  });
-
-  Route::prefix('user-rate')->group(function() {
-    Route::get('/', [UserRateController::class, 'index'])->name('user-rate::index');
-    Route::get('/create', [UserRateController::class, 'create'])->name('user-rate::create');
-    Route::post('/store', [UserRateController::class, 'store'])->name('user-rate::store');
-    Route::get('/edit/{userRateId}', [UserRateController::class, 'edit'])->name('user-rate::edit');
-    Route::post('/update/{userRateId}', [UserRateController::class, 'update'])->name('user-rate::update');
-    Route::get('/toggle-activate/{userRateId}', [UserRateController::class, 'toggleActivate'])->name('user-rate::toggleActivate');
   });
 
   Route::prefix('client')->group(function() {

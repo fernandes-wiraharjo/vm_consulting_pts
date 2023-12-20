@@ -21,6 +21,14 @@ $(document).ready(function () {
         name: "roles.name"
       },
       {
+        data: "position_name",
+        name: "positions.name"
+      },
+      {
+        data: "default_rate_per_hour",
+        name: "default_rate_per_hour"
+      },
+      {
         data: "is_active",
         name: "is_active",
         orderable: false,
@@ -51,5 +59,12 @@ $(document).ready(function () {
     $("#delete").attr("href", url);
     $("#delete").addClass(btnColor);
     $("#modal-toggle-activate").modal("show");
+  });
+
+  new AutoNumeric('.autonumeric', {
+    allowDecimalPadding: false,
+    decimalCharacter: ',',
+    digitGroupSeparator: '.',
+    unformatOnSubmit: true
   });
 });
