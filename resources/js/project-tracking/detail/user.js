@@ -1,5 +1,9 @@
 $(document).ready(function () {
-  function loadData(filterStartDate = '', filterEndDate = '') {
+  let urlParams = new URLSearchParams(window.location.search);
+  const filterStartDate = urlParams.get('startDate');
+  const filterEndDate = urlParams.get('endDate');
+
+  function loadData(filterStartDate, filterEndDate) {
     $('#table-job-detail-user').DataTable({
       responsive: true,
       processing: true,
@@ -43,26 +47,14 @@ $(document).ready(function () {
     });
   }
 
-  loadData();
-
-  function formatDate(dateString) {
-    const dateObject = new Date(dateString);
-
-    // Ambil komponen tanggal, bulan, dan tahun
-    const year = dateObject.getFullYear();
-    const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Tambah 1 karena bulan dimulai dari 0
-    const day = String(dateObject.getDate()).padStart(2, '0');
-
-    // Bentuk string dalam format "YYYY-MM-DD"
-    const formattedDate = `${year}-${month}-${day}`;
-    return formattedDate;
-  }
+  loadData(filterStartDate, filterEndDate);
 
   let filter = $("#filter-date").flatpickr({
     mode: "range",
     dateFormat: "Y-m-d",
     altInput: true,
     altFormat: "d F Y",
+    defaultDate: [filterStartDate, filterEndDate],
     onChange: function(dates) {
       if (dates.length == 2) {
         const startDate = formatDate(dates[0]);
@@ -78,5 +70,10 @@ $(document).ready(function () {
     filter.clear();
     $('#table-job-detail-user').DataTable().destroy();
     loadData();
+
+    if (filterStartDate && filterEndDate) {
+      let url = window.location.href;
+      window.location.href = url.split('?')[0];
+    }
   });
 });
