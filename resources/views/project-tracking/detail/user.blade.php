@@ -3,6 +3,7 @@
 @section('title', 'Project Tracking')
 
 @section('css')
+<link rel="stylesheet" href="{{ asset('assets/libs/datatables.net-bs5/css/buttons.bootstrap5.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/libs/flatpickr/flatpickr.min.css') }}">
 @endsection
 
@@ -25,8 +26,8 @@
         <div class="mt-3 mt-md-0 d-flex align-items-center">
           <ol class="breadcrumb m-0">
             <li class="breadcrumb-item"><a href="{{ route('project-tracking::index') }}">Project Tracking</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('project-tracking::detailPerJob', ['jobId' => $job->id]) }}">{{ $job->code }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $user->name }}</li>
+            <li class="breadcrumb-item"><a id="job-code" href="{{ route('project-tracking::detailPerJob', ['jobId' => $job->id]) }}">{{ $job->code }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page" id="user-name">{{ $user->name }}</li>
           </ol>
         </div>
       </div>
@@ -62,6 +63,10 @@
 @endsection
 
 @section('js')
+<script src="{{ asset('assets/libs/datatables.net-bs5/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-bs5/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-bs5/js/jszip.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-bs5/js/export.js') }}"></script>
 <script src="{{ asset('assets/libs/flatpickr/flatpickr.js') }}"></script>
 @vite('resources/js/project-tracking/detail/user.js')
 @endsection

@@ -1,6 +1,11 @@
 $(document).ready(function () {
   function loadData(filterStartDate = '', filterEndDate = '') {
+    const fileName = "Project Tracking" + ' ' + $("#job-code").text();
+
     $('#table-job-detail').DataTable({
+      dom: "<'row'<'col-sm-12 col-md-7 d-flex align-items-center ps-5'Bl><'col-sm-12 col-md-5'f>>" +
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
       responsive: true,
       processing: true,
       serverSide: true,
@@ -33,6 +38,28 @@ $(document).ready(function () {
           orderable: false,
           searchable: false
         }
+      ],
+      buttons: [
+        {
+          extend: "excelHtml5",
+          title: function () {
+            return exportDatatableHelper.generateFilename(fileName, filterStartDate, filterEndDate);
+          },
+          filename: function () {
+            return exportDatatableHelper.generateFilename(fileName, filterStartDate, filterEndDate);
+          },
+          action: exportDatatableHelper.newExportAction,
+          className: "btn btn-warning",
+          text: "Export",
+          titleAttr: "Excel",
+          exportOptions: {
+            modifier: {
+              page: "all",
+            },
+            columns: [0, 1, 2],
+            orthogonal: "export",
+          }
+        },
       ],
     });
   }
