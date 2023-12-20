@@ -32,11 +32,34 @@
             </div>
           </div>
           <div class="form-group row mb-4">
+            <label class="col-form-label text-md-end col-12 col-md-3 col-lg-3">Position <span class="text-danger">(*)</span></label>
+            <div class="col-sm-12 col-md-7">
+              <select class="form-select @if ($errors->has('role')) is-invalid @endif" name="position">
+                <option selected hidden disabled></option>
+                @foreach ($positions as $position)
+                <option value="{{ $position->id }}" {{ (collect(old('position'))->contains($position->id)) || $position->id == $user->id_position ? 'selected':'' }}>{{ $position->name }}</option>
+                @endforeach
+              </select>
+              @if($errors->has('position'))
+                <div class="invalid-feedback">{{ $errors->first('position') }}</div>
+              @endif
+            </div>
+          </div>
+          <div class="form-group row mb-4">
             <label class="col-form-label text-md-end col-12 col-md-3 col-lg-3">Name <span class="text-danger">(*)</span></label>
             <div class="col-sm-12 col-md-7">
               <input type="text" class="form-control @if ($errors->has('name')) is-invalid @endif" name="name" value="{{ old('name') ?? $user->name }}">
               @if($errors->has('name'))
                 <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+              @endif
+            </div>
+          </div>
+          <div class="form-group row mb-4">
+            <label class="col-form-label text-md-end col-12 col-md-3 col-lg-3">Rate per Hour <span class="text-danger">(*)</span></label>
+            <div class="col-sm-12 col-md-7">
+              <input type="text" class="form-control autonumeric @if ($errors->has('rate_per_hour')) is-invalid @endif" name="rate_per_hour" value="{{ old('rate_per_hour') ?? $user->default_rate_per_hour }}" autocomplete="off">
+              @if($errors->has('rate_per_hour'))
+                <div class="invalid-feedback">{{ $errors->first('rate_per_hour') }}</div>
               @endif
             </div>
           </div>
@@ -70,4 +93,9 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('js')
+<script src="{{ asset('assets/libs/autonumeric/autoNumeric.min.js') }}"></script>
+@vite('resources/js/user/index.js')
 @endsection

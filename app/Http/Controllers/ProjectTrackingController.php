@@ -231,7 +231,6 @@ class ProjectTrackingController extends Controller
 
             return redirect()->route('project-tracking::detailPerUser', ['jobId' => $jobId, 'userId' => $userId])->with('success', 'Project Tracking successfully updated');
         } catch (\Throwable $th) {
-            dd($th->getMessage());
             return redirect()->back()->with('failed', 'An error occurred');
         }
     }

@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class DailyTaskService
 {
     public function __construct(
-        private UserRateService $userRateService,
+        private UserService $userService,
     ) {}
     
     public function getDailyTasks()
@@ -55,7 +55,7 @@ class DailyTaskService
     public function storeDailyTask($data)
     {
         $idUser = auth()->user()->id;
-        $userRate = $this->userRateService->showUserRateByUser($idUser)->default_rate_per_hour;
+        $userRate = $this->userService->showUser($idUser)->default_rate_per_hour;
         $cost = multiplyTimeByNumber($data['hour'], $userRate);
         
         return DB::transaction(function () use ($idUser, $data, $userRate, $cost) {

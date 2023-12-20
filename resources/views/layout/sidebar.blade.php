@@ -20,15 +20,15 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('user::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['user::index', 'user::create', 'user::edit']) ? 'active' : '' }}">
-        <i data-feather="users" class="nav-icon me-2 icon-xxs">
-        </i> User
+      <a href="{{ route('position::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['position::index', 'position::create', 'position::edit']) ? 'active' : '' }}">
+        <i data-feather="credit-card" class="nav-icon me-2 icon-xxs">
+        </i> Position
       </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('user-rate::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['user-rate::index', 'user-rate::create', 'user-rate::edit']) ? 'active' : '' }}">
-        <i data-feather="credit-card" class="nav-icon me-2 icon-xxs">
-        </i> User Rate
+      <a href="{{ route('user::index') }}" class="nav-link has-arrow {{ in_array(Route::currentRouteName(), ['user::index', 'user::create', 'user::edit']) ? 'active' : '' }}">
+        <i data-feather="users" class="nav-icon me-2 icon-xxs">
+        </i> User
       </a>
     </li>
     <li class="nav-item">

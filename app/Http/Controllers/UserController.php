@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\RoleService;
+use App\Services\PositionService;
 use App\Services\UserService;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -12,6 +13,7 @@ class UserController extends Controller
     public function __construct(
         private UserService $userService,
         private RoleService $roleService,
+        private PositionService $positionService,
     ) {}
 
     public function index(Request $request)
@@ -20,6 +22,9 @@ class UserController extends Controller
 
         if ($request->ajax()) {
             return DataTables::of($users)
+                ->editColumn('default_rate_per_hour', function($userRate) {
+                    return formatCurrency($userRate->default_rate_per_hour);
+                })
                 ->editColumn('is_active', function($user) {
                     if ($user->is_active) {
                         return '<span class="badge bg-success">Active</span>';
@@ -57,9 +62,11 @@ class UserController extends Controller
     public function create()
     {
         $roles = $this->roleService->getRoles()->where('is_active', true)->get();
+        $positions = $this->positionService->getPositions()->where('is_active', true)->get();
 
         return view('user.create', [
-            'roles' => $roles
+            'roles' => $roles,
+            'positions' => $positions
         ]);
     }
 
@@ -67,14 +74,18 @@ class UserController extends Controller
     {
         $request->validate([
             'role' => 'required|integer|exists:roles,id',
+            'position' => 'required|integer|exists:positions,id',
             'name' => 'required|string',
-            'user_name' => 'required|string',
+            'rate_per_hour' => 'required|numeric',
+            'user_name' => 'required|string|unique:users,user_name',
             'password' => 'required|string'
         ]);
 
         $dataUser = [
             'id_role' => $request->input('role'),
+            'id_position' => $request->input('position'),
             'name' => $request->input('name'),
+            'default_rate_per_hour' => $request->input('rate_per_hour'),
             'user_name' => $request->input('user_name'),
             'password' => $request->input('password')
         ];
@@ -92,10 +103,12 @@ class UserController extends Controller
     {
         $user = $this->userService->showUser($userId);
         $roles = $this->roleService->getRoles()->where('is_active', true)->get();
+        $positions = $this->positionService->getPositions()->where('is_active', true)->get();
 
         return view('user.edit', [
             'user' => $user,
-            'roles' => $roles
+            'roles' => $roles,
+            'positions' => $positions
         ]);
     }
 
@@ -103,14 +116,18 @@ class UserController extends Controller
     {
         $request->validate([
             'role' => 'required|integer|exists:roles,id',
+            'position' => 'required|integer|exists:positions,id',
             'name' => 'required|string',
-            'user_name' => 'required|string',
+            'rate_per_hour' => 'required|numeric',
+            'user_name' => 'required|string|unique:users,user_name,'.$userId,
             'password' => 'nullable'
         ]);
 
         $dataUser = [
             'id_role' => $request->input('role'),
+            'id_position' => $request->input('position'),
             'name' => $request->input('name'),
+            'default_rate_per_hour' => $request->input('rate_per_hour'),
             'user_name' => $request->input('user_name'),
             'password' => $request->input('password')
         ];

@@ -133,7 +133,6 @@ class DailyTaskController extends Controller
 
             return redirect()->route('daily-task::detail', ['date' => $data['date']])->with('success', 'Daily Task successfully updated');
         } catch (\Throwable $th) {
-            dd($th);
             return redirect()->back()->with('failed', 'An error occurred');
         }
     }

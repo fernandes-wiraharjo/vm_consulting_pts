@@ -20,11 +20,11 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             RoleSeeder::class,
+            PositionSeeder::class,
             UserSeeder::class,
             ClientSeeder::class,
-            UserRateSeeder::class,
             JobSeeder::class,
-            JobDetailSeeder::class
+            JobDetailSeeder::class,
         ]);
     }
 }

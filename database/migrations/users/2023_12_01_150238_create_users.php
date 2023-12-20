@@ -18,9 +18,13 @@ class CreateUsers extends Migration
             $table->index('id_role');
             $table->integer('id_role')->unsigned()->nullable();
             $table->foreign('id_role')->references('id')->on('roles');
+            $table->index('id_position');
+            $table->integer('id_position')->unsigned()->nullable();
+            $table->foreign('id_position')->references('id')->on('positions');
             $table->string('name', 50);
             $table->string('user_name', 50)->unique();
             $table->string('password', 250);
+            $table->integer('default_rate_per_hour');
             $table->boolean('is_active')->default(true);
             $table->index('created_by');
             $table->integer('created_by')->unsigned()->nullable();

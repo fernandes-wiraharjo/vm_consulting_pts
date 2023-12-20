@@ -21,27 +21,36 @@ class UserSeeder extends Seeder
 
         $users = [
             [
+                'id_role' => 1,
+                'id_position' => 1,
                 'name' => 'Anton',
                 'user_name' => 'anton',
                 'password' => Hash::make('12345'),
+                'default_rate_per_hour' => 2000000,
                 'created_by' => null,
                 'created_date' => $now,
                 'updated_by' => null,
                 'updated_date' => null
             ],
             [
+                'id_role' => 2,
+                'id_position' => 2,
                 'name' => 'Andi',
                 'user_name' => 'andi',
                 'password' => Hash::make('12345'),
+                'default_rate_per_hour' => 1500000,
                 'created_by' => null,
                 'created_date' => $now,
                 'updated_by' => null,
                 'updated_date' => null
             ],
             [
+                'id_role' => 3,
+                'id_position' => 3,
                 'name' => 'Budi',
                 'user_name' => 'budi',
                 'password' => Hash::make('12345'),
+                'default_rate_per_hour' => 1000000,
                 'created_by' => null,
                 'created_date' => $now,
                 'updated_by' => null,

@@ -1,13 +1,13 @@
 @extends('layout.master')
 
-@section('title', 'User Rate')
+@section('title', 'Position')
 
 @section('content')
 <div class="row">
   <div class="col-lg-12 col-md-12 col-12">
     <!-- Page header -->
     <div class="d-flex justify-content-between align-items-center mb-5">
-      <h3 class="mb-0 ">User Rate</h3>
+      <h3 class="mb-0 ">Position</h3>
     </div>
   </div>
 </div>
@@ -15,14 +15,14 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <a href="{{ route('user-rate::create') }}" class="btn btn-sm btn-primary">Add</a>
+        <a href="{{ route('position::create') }}" class="btn btn-sm btn-primary">Add</a>
       </div>
       <div class="card-body">
         <div class="table-responsive table-card">
-          <table id="table-user-rate" class="table text-nowrap table-centered mt-0 w-100">
+          <table id="table-position" class="table text-nowrap table-centered mt-0 w-100">
             <thead class="table-light">
+              <th>Code</th>
               <th>Name</th>
-              <th>Rate per Hour</th>
               <th>Status</th>
               <th>Action</th>
             </thead>
@@ -46,7 +46,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Are you sure want to <strong id="status"></strong> user rate <strong id="name"></strong>?
+        Are you sure want to <strong id="status"></strong> position <strong id="name"></strong>?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
@@ -58,5 +58,5 @@
 @endsection
 
 @section('js')
-@vite('resources/js/user-rate/index.js')
+@vite('resources/js/position/index.js')
 @endsection

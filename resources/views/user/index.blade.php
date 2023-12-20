@@ -24,6 +24,8 @@
               <th>Name</th>
               <th>Username</th>
               <th>Role</th>
+              <th>Position</th>
+              <th>Rate per Hour</th>
               <th>Status</th>
               <th>Action</th>
             </thead>

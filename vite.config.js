@@ -8,8 +8,8 @@ export default defineConfig({
                 'resources/css/app.css', 'resources/js/app.js',
 
                 'resources/js/role/index.js',
+                'resources/js/position/index.js',
                 'resources/js/user/index.js',
-                'resources/js/user-rate/index.js',
                 'resources/js/client/index.js',
                 'resources/js/project-tracking/index.js',
                 'resources/js/project-tracking/detail/job.js',
