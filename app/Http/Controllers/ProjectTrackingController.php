@@ -142,15 +142,24 @@ class ProjectTrackingController extends Controller
         $job = $this->projectTrackingService->showJob($jobId);
         $jobDetail = $this->projectTrackingService->getJobDetails($jobId)->where('job_details.is_active', true);
 
+        if ($request->startDate && $request->endDate) {
+            $jobDetail->whereBetween('job_details.date', ["$request->startDate", "$request->endDate"]);
+        }
+
         if ($request->ajax()) {
             return DataTables::of($jobDetail)
                 ->editColumn('total_cost', function($jobDetail) {
                     return formatCurrency($jobDetail->total_cost);
                 })
-                ->addColumn('action', function($jobDetail) use ($jobId) {
-                    $urlDetail = route('project-tracking::detailPerUser', ['jobId' => $jobId, 'userId' => $jobDetail->user_id]);
+                ->addColumn('action', function($jobDetail) use ($jobId, $request) {
+                    $urlDetail = route('project-tracking::detailPerUser', [
+                        'jobId' => $jobId, 
+                        'userId' => $jobDetail->user_id,
+                        'startDate' => $request->startDate,
+                        'endDate' => $request->endDate
+                    ]);
 
-                    $action = '<a href="'.$urlDetail.'" class="btn btn-sm btn-secondary">Detail</a>';
+                    $action = '<a href="'.$urlDetail.'" target="_blank" class="btn btn-sm btn-secondary">Detail</a>';
 
                     return $action;
                 })
@@ -170,7 +179,7 @@ class ProjectTrackingController extends Controller
         $jobDetailPerUser = $this->projectTrackingService->getJobDetailsPerUser($jobId, $userId)->where('job_details.is_active', true);
 
         if ($request->startDate && $request->endDate) {
-            $jobDetailPerUser->where('date', '>=', "$request->startDate")->where('date', '<=', "$request->endDate");
+            $jobDetailPerUser->whereBetween('date', ["$request->startDate", "$request->endDate"]);
         }
 
         if ($request->ajax()) {

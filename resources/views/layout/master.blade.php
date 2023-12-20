@@ -72,6 +72,19 @@
         position: 'topRight',
       });
     }
+
+    function formatDate(dateString) {
+      const dateObject = new Date(dateString);
+
+      // Ambil komponen tanggal, bulan, dan tahun
+      const year = dateObject.getFullYear();
+      const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Tambah 1 karena bulan dimulai dari 0
+      const day = String(dateObject.getDate()).padStart(2, '0');
+
+      // Bentuk string dalam format "YYYY-MM-DD"
+      const formattedDate = `${year}-${month}-${day}`;
+      return formattedDate;
+    }
   </script>
   <!-- Pages JS -->
   @yield('js')
