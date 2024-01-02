@@ -17,24 +17,32 @@ class PositionSeeder extends Seeder
 
         $positions = [
             [
-                'code' => 'ACT',
-                'name' => 'Accounting',
+                'code' => 'PARTNER',
+                'name' => 'partner',
                 'created_by' => null,
                 'created_date' => $now,
                 'updated_by' => null,
                 'updated_date' => null
             ],
             [
-                'code' => 'MRK',
-                'name' => 'Marketing',
+                'code' => 'MGR',
+                'name' => 'manager',
                 'created_by' => null,
                 'created_date' => $now,
                 'updated_by' => null,
                 'updated_date' => null
             ],
             [
-                'code' => 'SLS',
-                'name' => 'Sales',
+                'code' => 'SPV',
+                'name' => 'supervisor',
+                'created_by' => null,
+                'created_date' => $now,
+                'updated_by' => null,
+                'updated_date' => null
+            ],
+            [
+                'code' => 'TA',
+                'name' => 'technical assistant',
                 'created_by' => null,
                 'created_date' => $now,
                 'updated_by' => null,

@@ -28,32 +28,8 @@ class RoleSeeder extends Seeder
                 'updated_date' => null
             ],
             [
-                'code' => 'MGR',
-                'name' => 'manager',
-                'created_by' => null,
-                'created_date' => $now,
-                'updated_by' => null,
-                'updated_date' => null
-            ],
-            [
-                'code' => 'SPV',
-                'name' => 'supervisor',
-                'created_by' => null,
-                'created_date' => $now,
-                'updated_by' => null,
-                'updated_date' => null
-            ],
-            [
-                'code' => 'SNR',
-                'name' => 'senior',
-                'created_by' => null,
-                'created_date' => $now,
-                'updated_by' => null,
-                'updated_date' => null
-            ],
-            [
-                'code' => 'JNR',
-                'name' => 'junior',
+                'code' => 'USR',
+                'name' => 'user',
                 'created_by' => null,
                 'created_date' => $now,
                 'updated_by' => null,
