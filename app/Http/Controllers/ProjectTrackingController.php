@@ -198,7 +198,13 @@ class ProjectTrackingController extends Controller
             $jobDetailPerUser->whereBetween('date', ["$request->startDate", "$request->endDate"]);
         }
 
+        $totalCost = $jobDetailPerUser->sum('cost');
+
         if ($request->ajax()) {
+            if ($request->type == 'total-cost') {
+                return formatCurrency($totalCost);
+            }
+
             return DataTables::of($jobDetailPerUser)
                 ->editColumn('date', function($jobDetailPerUser) {
                     return date('d M Y', strtotime($jobDetailPerUser->date));
@@ -212,6 +218,9 @@ class ProjectTrackingController extends Controller
                 })
                 ->editColumn('cost', function($jobDetailPerUser) {
                     return formatCurrency($jobDetailPerUser->cost);
+                })
+                ->addColumn('total_cost', function() use ($totalCost) {
+                    return formatCurrency($totalCost);
                 })
                 ->addColumn('action', function($jobDetailPerUser) use ($jobId, $userId) {
                     $urlEdit = route('project-tracking::editDetailPerUser', ['jobId' => $jobId, 'userId' => $userId, 'jobDetailId' => $jobDetailPerUser->id]);
