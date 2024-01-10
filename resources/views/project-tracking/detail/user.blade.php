@@ -50,6 +50,7 @@
               <th>Hour</th>
               <th>Rate per Hour</th>
               <th>Cost</th>
+              <th>Total Costs</th>
               <th>Action</th>
             </thead>
             <tbody>
