@@ -49,7 +49,6 @@ $(document).ready(function () {
           searchable: false
         }
       ],
-      order: [[0, 'desc']],
       buttons: [
         {
           extend: "excelHtml5",

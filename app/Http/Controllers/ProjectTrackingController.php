@@ -23,10 +23,10 @@ class ProjectTrackingController extends Controller
         if ($request->ajax()) {
             return DataTables::of($jobs)
                 ->editColumn('created_date', function($job) {
-                    return date('D, d M Y H:i:s', strtotime($job->created_date));
+                    return date('d M Y', strtotime($job->created_date));
                 })
                 ->filterColumn('created_date', function($query, $keyword) {
-                    $sql = "DATE_FORMAT(jobs.created_date, '%a, %d %b %Y %H:%i:%s') LIKE ?";
+                    $sql = "DATE_FORMAT(jobs.created_date, '%d %b %Y') LIKE ?";
                     $query->whereRaw($sql, ["%{$keyword}%"]);
                 })
                 ->editColumn('status', function($job) {
@@ -192,7 +192,7 @@ class ProjectTrackingController extends Controller
         if ($request->ajax()) {
             return DataTables::of($jobDetailPerUser)
                 ->editColumn('date', function($jobDetailPerUser) {
-                    return date('D, d M Y', strtotime($jobDetailPerUser->date));
+                    return date('d M Y', strtotime($jobDetailPerUser->date));
                 })
                 ->filterColumn('date', function($query, $keyword) {
                     $sql = "DATE_FORMAT(date, '%a, %d %b %Y') LIKE ?";

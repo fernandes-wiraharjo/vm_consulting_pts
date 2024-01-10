@@ -21,7 +21,7 @@ class DailyTaskController extends Controller
         if ($request->ajax()) {
             return DataTables::of($dailyTasks)
                 ->editColumn('date', function($dailyTask) {
-                    return date('D, d M Y', strtotime($dailyTask->date));
+                    return date('d M Y', strtotime($dailyTask->date));
                 })
                 ->filterColumn('date', function($query, $keyword) {
                     $sql = "DATE_FORMAT(date, '%a, %d %b %Y') LIKE ?";

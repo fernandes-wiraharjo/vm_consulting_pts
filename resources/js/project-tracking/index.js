@@ -48,8 +48,7 @@ $(document).ready(function () {
         orderable: false,
         searchable: false
       }
-    ],
-    order: [[0, 'desc']],
+    ]
   });
 
   $("#table-project-tracking").on("click", ".btn-delete", function() {
