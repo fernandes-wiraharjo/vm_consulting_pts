@@ -47,6 +47,7 @@
               <th>User</th>
               <th>Total Hours</th>
               <th>Total Costs</th>
+              <th>Grand Total Costs</th>
               <th>Action</th>
             </thead>
             <tbody>

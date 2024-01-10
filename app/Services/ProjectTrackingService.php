@@ -62,8 +62,7 @@ class ProjectTrackingService
 				'users.name as user_name',
 				DB::raw("SEC_TO_TIME(SUM(TIME_TO_SEC(job_details.hour))) as total_hour"),
 				DB::raw("SUM(job_details.cost) as total_cost")
-			)
-			->groupBy('users.id', 'users.name');
+			);
 	}
 
 	public function getJobDetailsPerUser($jobId, $userId)
