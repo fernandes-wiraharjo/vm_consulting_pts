@@ -50,11 +50,18 @@
               <th>Hour</th>
               <th>Rate per Hour</th>
               <th>Cost</th>
-              <th>Total Costs</th>
               <th>Action</th>
             </thead>
             <tbody>
             </tbody>
+            <tfoot class="table-light d-none">
+              <tr>
+                <th colspan="3"></th>
+                <th>Total Costs</th>
+                <th id="total-cost"></th>
+                <th></th>
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>

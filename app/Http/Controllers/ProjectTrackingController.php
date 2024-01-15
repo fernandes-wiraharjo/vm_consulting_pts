@@ -164,9 +164,6 @@ class ProjectTrackingController extends Controller
                 ->editColumn('total_cost', function($jobDetail) {
                     return formatCurrency($jobDetail->total_cost);
                 })
-                ->addColumn('grand_total_cost', function() use ($grandTotalCost) {
-                    return formatCurrency($grandTotalCost);
-                })
                 ->addColumn('action', function($jobDetail) use ($jobId, $request) {
                     $urlDetail = route('project-tracking::detailPerUser', [
                         'jobId' => $jobId, 
@@ -218,9 +215,6 @@ class ProjectTrackingController extends Controller
                 })
                 ->editColumn('cost', function($jobDetailPerUser) {
                     return formatCurrency($jobDetailPerUser->cost);
-                })
-                ->addColumn('total_cost', function() use ($totalCost) {
-                    return formatCurrency($totalCost);
                 })
                 ->addColumn('action', function($jobDetailPerUser) use ($jobId, $userId) {
                     $urlEdit = route('project-tracking::editDetailPerUser', ['jobId' => $jobId, 'userId' => $userId, 'jobDetailId' => $jobDetailPerUser->id]);
