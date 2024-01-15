@@ -47,11 +47,18 @@
               <th>User</th>
               <th>Total Hours</th>
               <th>Total Costs</th>
-              <th>Grand Total Costs</th>
               <th>Action</th>
             </thead>
             <tbody>
             </tbody>
+            <tfoot class="table-light d-none">
+              <tr>
+                <th></th>
+                <th>Grand Total Costs</th>
+                <th id="grand-total-cost"></th>
+                <th></th>
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>

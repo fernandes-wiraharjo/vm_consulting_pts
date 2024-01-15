@@ -6,7 +6,8 @@ $(document).ready(function () {
       dom: "<'row'<'col-sm-12 col-md-7 d-flex align-items-center ps-5'Bl><'col-sm-12 col-md-5'f>>" +
           "<'row'<'col-sm-12 px-5 py-2 grand-total-cost'>>" +
           "<'row'<'col-sm-12'tr>>" +
-          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>" +
+          "<'row'<'col-sm-12 px-5 py-3 grand-total-cost'>>",
       responsive: true,
       processing: true,
       serverSide: true,
@@ -34,12 +35,6 @@ $(document).ready(function () {
           searchable: false
         },
         {
-          data: "grand_total_cost",
-          name: "grand_total_cost",
-          searchable: false,
-          visible: false
-        },
-        {
           data: "action",
           name: "action",
           orderable: false,
@@ -55,20 +50,16 @@ $(document).ready(function () {
           filename: function () {
             return exportDatatableHelper.generateFilename(fileName, filterStartDate, filterEndDate);
           },
-          customizeData: function (excelData) {
-            for (var i = 1; i < excelData.body.length; i++) {
-              excelData.body[i].splice(3, 1);
-            }
-          },
           action: exportDatatableHelper.newExportAction,
           className: "btn btn-warning",
           text: "Export",
           titleAttr: "Excel",
+          footer: true,
           exportOptions: {
             modifier: {
               page: "all",
             },
-            columns: [0, 1, 2, 3],
+            columns: [0, 1, 2],
             orthogonal: "export",
           }
         },
@@ -87,6 +78,8 @@ $(document).ready(function () {
         $("div.grand-total-cost").html(`
           <h4 class='m-0'>Grand Total Costs : ${data}</h4>
         `);
+
+        $("#grand-total-cost").text(data);
       }
     });
   }
