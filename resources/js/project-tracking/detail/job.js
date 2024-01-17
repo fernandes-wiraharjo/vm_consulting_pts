@@ -1,6 +1,6 @@
 $(document).ready(function () {
   function loadData(filterStartDate = '', filterEndDate = '') {
-    const fileName = "Project Tracking" + ' ' + $("#job-code").text();
+    const fileName = $("#job-code").text();
 
     $('#table-job-detail').DataTable({
       dom: "<'row'<'col-sm-12 col-md-7 d-flex align-items-center ps-5'Bl><'col-sm-12 col-md-5'f>>" +

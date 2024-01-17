@@ -4,7 +4,7 @@ $(document).ready(function () {
   const filterEndDate = urlParams.get('endDate');
 
   function loadData(filterStartDate, filterEndDate) {
-    const fileName = "Project Tracking" + ' ' + $("#job-code").text() + ' ' + $("#user-name").text();
+    const fileName = $("#job-code").text() + ' ' + $("#user-name").text();
 
     $('#table-job-detail-user').DataTable({
       dom: "<'row'<'col-sm-12 col-md-7 d-flex align-items-center ps-5'Bl><'col-sm-12 col-md-5'f>>" +
