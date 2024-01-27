@@ -32,10 +32,10 @@
       </div>
       <div class="card-header border-top border-2 border-bottom-0">
         <div class="row">
-          <div class="col-10 col-sm-8 col-lg-5">
+          <div class="col-12 col-sm-8 col-lg-5 mb-2 mb-sm-0">
             <input type="text" class="form-control" id="filter-date" placeholder="Filter Date">
           </div>
-          <div class="col-2 col-sm-4">
+          <div class="col-12 col-sm-4">
             <button class="btn btn-outline-dark border-1" id="btn-reset-filter">Reset</button>
           </div>
         </div>

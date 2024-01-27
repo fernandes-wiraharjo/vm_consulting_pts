@@ -86,7 +86,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/', [DailyTaskController::class, 'index'])->name('daily-task::index');
     Route::get('/create', [DailyTaskController::class, 'create'])->name('daily-task::create');
     Route::post('/store', [DailyTaskController::class, 'store'])->name('daily-task::store');
-    Route::get('/detail/{date}', [DailyTaskController::class, 'detail'])->name('daily-task::detail');
+    Route::get('/detail/{date}/{userId}', [DailyTaskController::class, 'detail'])->name('daily-task::detail');
     Route::get('/edit/{jobDetailId}', [DailyTaskController::class, 'edit'])->name('daily-task::edit');
     Route::post('/update/{jobDetailId}', [DailyTaskController::class, 'update'])->name('daily-task::update');
     Route::get('/delete/{jobDetailId}', [DailyTaskController::class, 'delete'])->name('daily-task::delete');

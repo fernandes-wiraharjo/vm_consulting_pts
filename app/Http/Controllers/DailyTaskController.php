@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\DailyTaskService;
 use App\Services\ProjectTrackingService;
+use App\Services\UserService;
 use Yajra\DataTables\Facades\DataTables;
 
 class DailyTaskController extends Controller
@@ -12,11 +13,18 @@ class DailyTaskController extends Controller
     public function __construct(
         private DailyTaskService $dailyTaskService,
         private ProjectTrackingService $projectTrackingService,
+        private UserService $userService,
     ) {}
 
     public function index(Request $request)
     {
-        $dailyTasks = $this->dailyTaskService->getDailyTasks()->where('job_details.is_active', true);
+        $userId = $request->userId ?? auth()->user()->id;
+
+        $dailyTasks = $this->dailyTaskService->getDailyTasks()
+            ->where('job_details.id_user', $userId)
+            ->where('job_details.is_active', true);
+
+        $users = $this->userService->getUsers()->get();
 
         if ($request->ajax()) {
             return DataTables::of($dailyTasks)
@@ -27,10 +35,10 @@ class DailyTaskController extends Controller
                     $sql = "DATE_FORMAT(date, '%a, %d %b %Y') LIKE ?";
                     $query->whereRaw($sql, ["%{$keyword}%"]);
                 })
-                ->addColumn('action', function($dailyTask) {
-                    $urlDetail = route('daily-task::detail', ['date' => $dailyTask->date]);
+                ->addColumn('action', function($dailyTask) use ($userId) {
+                    $urlDetail = route('daily-task::detail', ['date' => $dailyTask->date, 'userId' => $userId]);
 
-                    $action = '<a href="'.$urlDetail.'" class="btn btn-sm btn-secondary">Detail</a>';
+                    $action = '<a href="'.$urlDetail.'" target="_blank" class="btn btn-sm btn-secondary">Detail</a>';
 
                     return $action;
                 })
@@ -38,7 +46,9 @@ class DailyTaskController extends Controller
                 ->make();
         }
 
-        return view('daily-task.index');
+        return view('daily-task.index', [
+            'users' => $users
+        ]);
     }
 
     public function create()
@@ -75,10 +85,11 @@ class DailyTaskController extends Controller
         }
     }
 
-    public function detail(Request $request, $date)
+    public function detail(Request $request, $date, $userId)
     {
-        $dailyTaskByDate = $this->dailyTaskService->getDailyTaskByDate($date)->where('job_details.is_active', true);
-        $total_hour = $this->dailyTaskService->getTotalHour($date);
+        $dailyTaskByDate = $this->dailyTaskService->getDailyTaskByDate($date, $userId)->where('job_details.is_active', true);
+        $total_hour = $this->dailyTaskService->getTotalHour($date, $userId);
+        $user = $this->userService->showUser($userId);
 
         if ($request->ajax()) {
             return DataTables::of($dailyTaskByDate)
@@ -100,6 +111,7 @@ class DailyTaskController extends Controller
         }
 
         return view('daily-task.detail', [
+            'user' => $user,
             'date' => $date,
             'total_hour' => $total_hour
         ]);

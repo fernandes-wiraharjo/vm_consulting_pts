@@ -14,16 +14,15 @@ class DailyTaskService
     public function getDailyTasks()
     {
         return DB::table('job_details')
-            ->where('id_user', auth()->user()->id)
             ->select('date', DB::raw("SEC_TO_TIME(SUM(TIME_TO_SEC(hour))) as total_hour"))
             ->groupBy('date');
     }
 
-    public function getDailyTaskByDate($date)
+    public function getDailyTaskByDate($date, $userId)
     {
         return DB::table('job_details')
             ->join('jobs', 'jobs.id', 'job_details.id_job')
-            ->where('job_details.id_user', auth()->user()->id)
+            ->where('job_details.id_user', $userId)
             ->where('job_details.date', $date)
             ->select(
                 'job_details.id', 'job_details.description', 'job_details.date', 'job_details.hour', 'job_details.is_active',
@@ -31,10 +30,10 @@ class DailyTaskService
             );
     }
 
-    public function getTotalHour($date)
+    public function getTotalHour($date, $userId)
     {
         return DB::table('job_details')
-            ->where('id_user', auth()->user()->id)
+            ->where('id_user', $userId)
             ->where('date', $date)
             ->selectRaw("SEC_TO_TIME(SUM(TIME_TO_SEC(hour))) as total_hour")
             ->first()->total_hour;

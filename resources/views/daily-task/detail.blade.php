@@ -7,8 +7,8 @@
   <div class="col-lg-12 col-md-12 col-12">
     <!-- Page header -->
     <div class="mb-5">
-      <h3 class="mb-0 ">Daily Task - {{ date('D, d M Y', strtotime($date)) }}</h3>
-      <h4>Total Hour - {{ $total_hour }}</h4>
+      <h3 class="mb-0 ">Daily Task - {{ $user->name }} - {{ date('D, d M Y', strtotime($date)) }}</h3>
+      <div id="total-hour" data-total-hour="{{ $total_hour }}"></div>
     </div>
   </div>
 </div>
