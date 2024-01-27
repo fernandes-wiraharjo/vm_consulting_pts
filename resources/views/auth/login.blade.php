@@ -37,7 +37,7 @@
               <!-- Email -->
               <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" id="username" class="form-control @if ($errors->has('username')) is-invalid @endif" name="username" value="{{ old('username') }}">
+                <input type="text" id="username" class="form-control @if ($errors->has('username')) is-invalid @endif" name="username" value="{{ old('username') }}" autofocus>
                 @if($errors->has('username'))
                   <div class="invalid-feedback">{{ $errors->first('username') }}</div>
                 @endif

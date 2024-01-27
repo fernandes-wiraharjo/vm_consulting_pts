@@ -15,6 +15,9 @@
     <!--Navbar nav -->
     <ul class="navbar-nav navbar-right-wrap ms-lg-auto d-flex nav-top-wrap align-items-center ms-4 ms-lg-0">
       <li>
+        <h5 class="m-0 me-3">{{ auth()->user()->name }}</h5>
+      </li>
+      <li>
         <a href="dashboard-analytics.html#" class="form-check form-switch theme-switch btn btn-ghost btn-icon rounded-circle mb-0 ">
           <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
           <label class="form-check-label" for="flexSwitchCheckDefault"></label>
@@ -30,12 +33,6 @@
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
-          <div class="px-4 pb-0 pt-2">
-            <div class="lh-1 ">
-              <h5 class="mb-1">{{ auth()->user()->name }}</h5>
-            </div>
-            <div class=" dropdown-divider mt-3 mb-2"></div>
-          </div>
           <ul class="list-unstyled">
             <li>
               <a class="dropdown-item" href="{{ route('do-logout') }}">
