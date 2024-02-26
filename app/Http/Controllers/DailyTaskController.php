@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Services\DailyTaskService;
 use App\Services\ProjectTrackingService;
 use App\Services\UserService;
@@ -18,6 +19,8 @@ class DailyTaskController extends Controller
 
     public function index(Request $request)
     {
+        Session::forget('page_from');
+
         $userId = $request->userId ?? auth()->user()->id;
 
         $dailyTasks = $this->dailyTaskService->getDailyTasks()
@@ -55,6 +58,11 @@ class DailyTaskController extends Controller
     {
         $jobs = $this->projectTrackingService->getJobs()->where('jobs.is_active', true)->where('jobs.status', 'open')->get();
 
+        $pageFrom = Session::get('page_from');
+        if (!$pageFrom) {
+            Session::put('page_from', url()->previous());
+        }
+
         return view('daily-task.create', [
             'jobs' => $jobs
         ]);
@@ -68,7 +76,7 @@ class DailyTaskController extends Controller
             'date' => 'required',
             'hour' => 'required'
         ]);
-        
+
         $data = [
             'job_number' => $request->input('job_number'),
             'description' => $request->input('description'),
@@ -79,7 +87,8 @@ class DailyTaskController extends Controller
         try {
             $this->dailyTaskService->storeDailyTask($data);
 
-            return redirect()->route('daily-task::detail', ['date' => $data['date']])->with('success', 'Daily Task successfully added');
+            $pageFrom = Session::get('page_from');
+            return redirect()->to($pageFrom)->with('success', 'Daily Task successfully added');
         } catch (\Throwable $th) {
             return redirect()->back()->with('failed', 'An error occurred');
         }
@@ -147,7 +156,8 @@ class DailyTaskController extends Controller
         try {
             $this->dailyTaskService->updateDailyTask($jobDetailId, $data);
 
-            return redirect()->route('daily-task::detail', ['date' => $data['date']])->with('success', 'Daily Task successfully updated');
+            $pageFrom = Session::get('page_from');
+            return redirect()->to($pageFrom)->with('success', 'Daily Task successfully updated');
         } catch (\Throwable $th) {
             return redirect()->back()->with('failed', 'An error occurred');
         }
