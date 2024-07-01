@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/edit/{clientId}', [ClientController::class, 'edit'])->name('client::edit');
     Route::post('/update/{clientId}', [ClientController::class, 'update'])->name('client::update');
     Route::get('/toggle-activate/{clientId}', [ClientController::class, 'toggleActivate'])->name('client::toggleActivate');
+    Route::get('/delete/{clientId}', [ClientController::class, 'delete'])->name('client::delete');
   });
 
   Route::prefix('project-tracking')->group(function() {

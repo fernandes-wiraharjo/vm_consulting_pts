@@ -47,11 +47,11 @@
         </button>
       </div>
       <div class="modal-body">
-        Are you sure want to <strong id="status"></strong> client <strong id="name"></strong>?
+        Are you sure want to <strong>delete</strong> client <strong id="name"></strong>?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
-        <a id="delete" class="btn">Yes</a>
+        <a id="delete" class="btn btn-danger">Yes</a>
       </div>
     </div>
   </div>

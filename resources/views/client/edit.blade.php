@@ -80,6 +80,21 @@
               @endif
             </div>
           </div>
+          <div class="form-group row align-items-center mb-4">
+            <label class="col-form-label text-md-end col-12 col-md-3 col-lg-3">Status</label>
+            <div class="col-sm-12 col-md-7">
+              <div class="d-flex">
+                <label class="form-check-label pe-2">Deactive</label>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" name="is_active" role="switch" {{ $client->is_active ? 'checked' : '' }}>
+                </div>
+                <label class="form-check-label">Active</label>
+              </div>
+              @if($errors->has('description'))
+                <div class="invalid-feedback">{{ $errors->first('description') }}</div>
+              @endif
+            </div>
+          </div>
           <div class="form-group row mb-4">
             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
             <div class="col-sm-12 col-md-7">

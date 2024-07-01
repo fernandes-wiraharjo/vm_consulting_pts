@@ -57,6 +57,7 @@ class ClientService
                 'pic' => $data['pic'],
                 'address' => $data['address'],
                 'description' => $data['description'],
+                'is_active' => $data['is_active'],
                 'updated_by' => auth()->user()->id,
                 'updated_date' => Carbon::now()
             ]);
@@ -80,5 +81,21 @@ class ClientService
         return DB::table('clients')
             ->where('id', $clientId)
             ->update($dataUpdate);
+    }
+
+    public function deleteClient($clientId)
+    {
+        $checkRelation = DB::table('clients')
+            ->join('jobs', 'jobs.id_client', 'clients.id')
+            ->where('clients.id', $clientId)
+            ->exists();
+
+        if ($checkRelation) {
+            return false;
+        } else {
+            return DB::table('clients')
+                ->where('id', $clientId)
+                ->delete();
+        }
     }
 }
