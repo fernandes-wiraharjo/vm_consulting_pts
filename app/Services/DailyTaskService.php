@@ -35,6 +35,7 @@ class DailyTaskService
         return DB::table('job_details')
             ->where('id_user', $userId)
             ->where('date', $date)
+            ->where('is_active', true)
             ->selectRaw("SEC_TO_TIME(SUM(TIME_TO_SEC(hour))) as total_hour")
             ->first()->total_hour;
     }
